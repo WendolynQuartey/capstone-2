@@ -1,20 +1,22 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Sandwich {
-    private Size size;
+    Size size;
     private String breadType;
     private boolean isToasted;
-    private double price;
-    ArrayList<Ingredient> ingredients;
+    double price;
+    HashSet<Ingredient> ingredients;
+    //HashSet<Topping> toppings;
 
     public Sandwich(Size size, String breadType, boolean isToasted, double price) {
         this.size = size;
         this.breadType = breadType;
         this.isToasted = isToasted;
         this.price = price;
-        this.ingredients = new ArrayList<>();
+        this.ingredients = new HashSet<>();
+        //this.toppings = new HashSet<>();
     }
 
     //region getters/setters
