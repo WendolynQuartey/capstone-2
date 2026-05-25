@@ -1,11 +1,14 @@
 package com.pluralsight;
 
-abstract class Ingredient extends Sandwich{
+abstract class Ingredient{
     boolean hasExtra;
+    Size size;
+    double price;
 
-    public Ingredient(Size size, String breadType, boolean isToasted, double price, boolean hasExtra) {
-        super(size, breadType, isToasted, price);
+    public Ingredient(boolean hasExtra, Size size, double price) {
         this.hasExtra = hasExtra;
+        this.size = size;
+        this.price = price;
     }
 
     //region getters/setters
@@ -16,6 +19,21 @@ abstract class Ingredient extends Sandwich{
 
     public void setHasExtra(boolean hasExtra) {
         this.hasExtra = hasExtra;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    abstract double getPrice();
+
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     //endregion

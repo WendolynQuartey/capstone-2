@@ -1,13 +1,12 @@
 package com.pluralsight;
 
 public class Cheese  extends Ingredient{
-    public Cheese(Size size, String breadType, boolean isToasted, double price, boolean hasExtra) {
-        super(size, breadType, isToasted, price, hasExtra);
+    public Cheese(boolean hasExtra, Size size, double price) {
+        super(hasExtra, size, price);
     }
 
-
     @Override
-    public double getPrice() {
+    double getPrice() {
         if (this.size == Size.SMALL) {
             if (this.hasExtra) {
                 return this.price += 1.05;

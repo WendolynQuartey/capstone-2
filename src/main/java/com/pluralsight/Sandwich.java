@@ -19,6 +19,13 @@ public class Sandwich {
         //this.toppings = new HashSet<>();
     }
 
+    public Sandwich(Size size, double price) {
+        this.size = size;
+        this.price = price;
+    }
+
+
+
     //region getters/setters
 
     public Size getSize() {
