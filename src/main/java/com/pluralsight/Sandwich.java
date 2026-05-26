@@ -74,9 +74,11 @@ public class Sandwich {
 
     public double calculatePrice() {
         double total = 0;
+
         for (Ingredient i: ingredients){
             total += i.getPrice();
         }
+
         if (this.size == Size.SMALL) {
             this.price = 5.50;
         } else if (this.size == Size.MEDIUM) {
