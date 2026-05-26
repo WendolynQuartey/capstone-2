@@ -19,4 +19,13 @@ public class Order {
     public void addSandwich(Sandwich s){
         sandwiches.add(s);
     }
+
+    public double getOrderTotal() {
+        double total = 0;
+
+        for (Sandwich s : sandwiches){
+            total += s.calculatePrice();
+        }
+        return total;
+    }
 }
