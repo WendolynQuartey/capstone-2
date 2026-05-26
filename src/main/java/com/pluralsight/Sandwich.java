@@ -12,21 +12,14 @@ public class Sandwich {
     HashSet<Ingredient> ingredients;
     HashSet<Topping> toppings;
 
-    public Sandwich(Size size, String breadType, boolean isToasted, double price) {
+    public Sandwich(Size size, String breadType, boolean isToasted) {
         this.size = size;
         this.breadType = breadType;
         this.isToasted = isToasted;
-        this.price = price;
+        this.price = 0;
         this.ingredients = new HashSet<>();
         this.toppings = new HashSet<>();
     }
-
-    public Sandwich(Size size, double price) {
-        this.size = size;
-        this.price = price;
-    }
-
-
 
     //region getters/setters
 
@@ -74,17 +67,18 @@ public class Sandwich {
 
     public double calculatePrice() {
 
+        if (this.size == Size.SMALL) {
+            this.price = 5.50;
+        } else if (this.size == Size.MEDIUM) {
+            this.price = 7.00;
+        } else if (this.size == Size.LARGE) {
+            this.price = 8.50;
+        }
+
         for (Ingredient i: ingredients){
             this.price += i.getPrice();
         }
 
-        if (this.size == Size.SMALL) {
-            this.price += 5.50;
-        } else if (this.size == Size.MEDIUM) {
-            this.price += 7.00;
-        } else if (this.size == Size.LARGE) {
-            this.price += 8.50;
-        }
         return this.price;
     }
 
