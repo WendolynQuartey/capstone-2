@@ -1,6 +1,4 @@
-package com.pluralsight.enums;
-
-import com.pluralsight.Sandwich;
+package com.pluralsight;
 
 import java.util.ArrayList;
 
