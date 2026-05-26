@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import com.pluralsight.enums.Size;
+
 import java.util.HashSet;
 
 public class Sandwich {
@@ -8,7 +10,7 @@ public class Sandwich {
     private boolean isToasted;
     double price;
     HashSet<Ingredient> ingredients;
-    //HashSet<Topping> toppings;
+    HashSet<Topping> toppings;
 
     public Sandwich(Size size, String breadType, boolean isToasted, double price) {
         this.size = size;
@@ -16,7 +18,7 @@ public class Sandwich {
         this.isToasted = isToasted;
         this.price = price;
         this.ingredients = new HashSet<>();
-        //this.toppings = new HashSet<>();
+        this.toppings = new HashSet<>();
     }
 
     public Sandwich(Size size, double price) {
@@ -59,9 +61,23 @@ public class Sandwich {
     public void setPrice(double price) {
         this.price = price;
     }
+
     //endregion
 
     public void addIngredients(Ingredient i){
-        this.ingredients.add(i);
+        ingredients.add(i);
     }
+
+    public void addRegToppings(Topping t){
+        toppings.add(t);
+    }
+
+    public double calculatePrice() {
+        double total = 0;
+        for (Ingredient i: ingredients){
+            total += i.getPrice();
+        }
+        return total += this.price;
+    }
+
 }

@@ -1,8 +1,10 @@
 package com.pluralsight;
 
+import com.pluralsight.enums.Size;
+
 public class Cheese  extends Ingredient{
-    public Cheese(boolean hasExtra, Size size, double price) {
-        super(hasExtra, size, price);
+    public Cheese(String name, boolean hasExtra, Size size, double price) {
+        super(name, hasExtra, size, price);
     }
 
     @Override
