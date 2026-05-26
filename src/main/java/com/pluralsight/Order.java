@@ -57,7 +57,8 @@ public class Order {
                 """,LocalDateTime.now(),o.getCustomerName());
 
         for (Sandwich s: sandwiches){
-            p1 += String.format("Sandwich - $%.2f",s.getPrice());
+            p1 += String.format("Sandwich %s $%.2f",s.getSize(),s.getPrice());
+            p1 += s.getSandwichDetails(s);
         }
 
         for (OtherProduct other: others){

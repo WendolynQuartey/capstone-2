@@ -65,6 +65,18 @@ public class Sandwich {
         toppings.add(t);
     }
 
+    public String getSandwichDetails(Sandwich s){
+        String p1 = "";
+        for (Ingredient i: s.ingredients){
+            p1 += String.format("\n\t%s", i.getName());
+        }
+
+        for (Topping t: s.toppings){
+            p1 += String.format("\n\t%s", t.getName());
+        }
+        return p1;
+    }
+
     public double calculatePrice() {
 
         if (this.size == Size.SMALL) {

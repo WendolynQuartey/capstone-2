@@ -2,6 +2,8 @@ package com.pluralsight;
 
 import com.pluralsight.enums.Size;
 
+import java.time.LocalDateTime;
+
 public class Main {
     public static void main(String[] args) {
         Meat meat = new Meat("steak", true, Size.SMALL,1.00);
@@ -18,5 +20,7 @@ public class Main {
 
         order.addSandwich(sandwich);
         System.out.println(order.getOrderDetails(order));
+
+        ReceiptFileManager.saveReciept(order, LocalDateTime.now());
     }
 }
