@@ -17,11 +17,11 @@ public class Drink extends OtherProduct{
     @Override
     public double getPrice() {
         if (this.size == Size.SMALL) {
-            this.price += 5.50;
+            this.price = 2.00;
         } else if (this.size == Size.MEDIUM) {
-            this.price += 7.00;
+            this.price = 2.50;
         } else if (this.size == Size.LARGE) {
-            this.price += 8.50;
+            this.price = 3.00;
         }
         return this.price;
     }
