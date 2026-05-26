@@ -77,6 +77,13 @@ public class Sandwich {
         for (Ingredient i: ingredients){
             total += i.getPrice();
         }
+        if (this.size == Size.SMALL) {
+            this.price = 5.50;
+        } else if (this.size == Size.MEDIUM) {
+            this.price = 7.00;
+        } else if (this.size == Size.LARGE) {
+            this.price = 8.50;
+        }
         return total += this.price;
     }
 
