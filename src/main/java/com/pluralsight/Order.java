@@ -44,7 +44,7 @@ public class Order {
     }
 
     public String getOrderDetails(Order o){
-        String p1 = String.format("""
+        String receipt = String.format("""
                 ================================
                             RECEIPT
                 =================================
@@ -57,16 +57,16 @@ public class Order {
                 """,LocalDateTime.now(),o.getCustomerName());
 
         for (Sandwich s: sandwiches){
-            p1 += String.format("Sandwich %s $%.2f",s.getSize(),s.getPrice());
-            p1 += s.getSandwichDetails(s);
+            receipt += String.format("Sandwich %s $%.2f",s.getSize(),s.getPrice());
+            receipt += s.getSandwichDetails(s);
         }
 
         for (OtherProduct other: others){
             Drink drink = new Drink(3.00, Size.LARGE);
-            p1 += String.format("%s Drink - $%.2f",Drink.getSize(), drink.getPrice() );
+            receipt += String.format("%s Drink - $%.2f",Drink.getSize(), drink.getPrice() );
         }
 
-        p1 += String.format("""
+        receipt += String.format("""
         \n---------------------------------
         Total:    $%.2f
 
@@ -77,6 +77,6 @@ public class Order {
         =================================
         """, o.getOrderTotal());
 
-        return p1;
+        return receipt;
     }
 }

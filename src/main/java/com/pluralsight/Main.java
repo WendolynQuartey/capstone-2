@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
+
+        UserInterface.display();
         Meat meat = new Meat("steak", true, Size.SMALL,1.00);
 
         System.out.println(meat.getPrice());

@@ -12,7 +12,7 @@ public class ReceiptFileManager {
     public static void saveReciept(Order o, LocalDateTime rightNow) {
         try {
             String now = rightNow.format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss"));
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/receipts" + now + ".text"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/receipts/" + now + ".text"));
             bufferedWriter.write(o.getOrderDetails(o));
             bufferedWriter.close();
         } catch(FileNotFoundException e){
