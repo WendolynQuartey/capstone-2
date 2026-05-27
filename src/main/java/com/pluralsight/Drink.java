@@ -2,27 +2,25 @@ package com.pluralsight;
 
 import com.pluralsight.enums.Size;
 
-public class Drink extends OtherProduct{
-    static Size size;
+public class Drink{
+    Size size;
 
-    public Drink(double price, Size size) {
-        super(price);
+    public Drink(Size size) {
         this.size = size;
     }
 
-    public static Size getSize() {
+    public Size getSize() {
         return size;
     }
 
-    @Override
     public double getPrice() {
         if (size == Size.SMALL) {
-            this.price = 2.00;
+            return 2.00;
         } else if (size == Size.MEDIUM) {
-            this.price = 2.50;
+            return 2.50;
         } else if (size == Size.LARGE) {
-            this.price = 3.00;
+            return 3.00;
         }
-        return this.price;
+        return 0;
     }
 }

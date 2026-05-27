@@ -1,13 +1,11 @@
 package com.pluralsight;
 
-public class Chip extends OtherProduct{
-    public Chip(double price) {
-        super(price);
+public class Chip {
+    public Chip() {
+
     }
 
-    @Override
-    public double getPrice() {
-        this.price = 1.5;
-        return this.price;
+    public double getPrice() {;
+        return 1.5;
     }
 }
