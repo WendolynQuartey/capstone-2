@@ -1,23 +1,25 @@
 package com.pluralsight;
 
-import com.pluralsight.enums.Size;
+import com.pluralsight.enums.*;
 
 import java.util.HashSet;
 
 public class Sandwich {
     Size size;
-    private String breadType;
+    private BreadType breadType;
     private boolean isToasted;
     double price;
-    HashSet<Ingredient> ingredients;
+    Cheese cheese;
+    Meat meat;
     HashSet<Topping> toppings;
 
-    public Sandwich(Size size, String breadType, boolean isToasted) {
+    public Sandwich(Size size, BreadType breadType, boolean isToasted) {
         this.size = size;
         this.breadType = breadType;
         this.isToasted = isToasted;
         this.price = 0;
-        this.ingredients = new HashSet<>();
+        this.cheese = null;
+        this.meat = null;
         this.toppings = new HashSet<>();
     }
 
@@ -31,11 +33,11 @@ public class Sandwich {
         this.size = size;
     }
 
-    public String getBreadType() {
+    public BreadType getBreadType() {
         return breadType;
     }
 
-    public void setBreadType(String breadType) {
+    public void setBreadType(BreadType breadType) {
         this.breadType = breadType;
     }
 
@@ -57,18 +59,26 @@ public class Sandwich {
 
     //endregion
 
-    public void addIngredients(Ingredient i){
-        ingredients.add(i);
+    public void addCheese(Cheese cheese){
+        this.cheese = cheese;
     }
 
-    public void addRegToppings(Topping t){
+    public void addMeat(Meat meat){
+        this.meat = meat;
+    }
+
+    public void addToppings(RegTopping t){
         toppings.add(t);
     }
 
     public String getSandwichDetails(Sandwich s){
         String p1 = "";
-        for (Ingredient i: s.ingredients){
-            p1 += String.format("\n\t%s", i.getName());
+        if (this.cheese != null) {
+            p1 += String.format("\n\t%s", cheese);
+        }
+
+        if (this.meat != null) {
+            p1 += String.format("\n\t%s", meat);
         }
 
         for (Topping t: s.toppings){
@@ -86,11 +96,12 @@ public class Sandwich {
         } else if (this.size == Size.LARGE) {
             this.price = 8.50;
         }
-
-
-        for (Ingredient i: ingredients){
-            this.price += i.getPrice();
+        if (this.cheese != null){
+            this.price += cheese.getPrice();
         }
+         if (this.meat != null){
+             this.price += meat.getPrice();
+         }
 
         return this.price;
     }

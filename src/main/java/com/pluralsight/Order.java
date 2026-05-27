@@ -9,12 +9,13 @@ import java.util.ArrayList;
 public class Order {
     String customerName;
     ArrayList<Sandwich> sandwiches;
-    ArrayList<OtherProduct> others;
+    ArrayList<Drink> drinks;
+    ArrayList<Chip> chips;
 
     public Order(String customerName) {
         this.customerName = customerName;
         this.sandwiches = new ArrayList<>();
-        this.others = new ArrayList<>();
+        this.drinks = new ArrayList<>();
     }
 
     public String getCustomerName() {
@@ -25,8 +26,12 @@ public class Order {
         sandwiches.add(s);
     }
 
-    public void addOtherProduct(OtherProduct other){
-        others.add(other);
+    public void addDrink(Drink drink){
+        drinks.add(drink);
+    }
+
+    public void addChips(Chip chip){
+        chips.add(chip);
     }
 
     public double getOrderTotal() {
@@ -36,8 +41,12 @@ public class Order {
             total += s.calculatePrice();
         }
 
-        for (OtherProduct other : others){
-            total += other.getPrice();
+        for (Drink d : drinks){
+            total += d.getPrice();
+        }
+
+        for (Chip c : chips){
+            total += c.getPrice();
         }
 
         return total;
@@ -57,13 +66,20 @@ public class Order {
                 """,LocalDateTime.now(),o.getCustomerName());
 
         for (Sandwich s: sandwiches){
-            receipt += String.format("Sandwich %s $%.2f",s.getSize(),s.getPrice());
+            receipt += String.format("%s Sandwich $%.2f",s.getSize(),s.getPrice());
             receipt += s.getSandwichDetails(s);
         }
 
-        for (OtherProduct other: others){
-            Drink drink = new Drink(3.00, Size.LARGE);
-            receipt += String.format("%s Drink - $%.2f",Drink.getSize(), drink.getPrice() );
+        if(this.drinks != null) {
+            for (Drink d : drinks) {
+                receipt += String.format("%s Drink - $%.2f", d.getSize(), d.getPrice());
+            }
+        }
+
+        if (this.chips != null) {
+            for (Chip c : chips) {
+                receipt += String.format("Chip - $%.2f", c.getPrice());
+            }
         }
 
         receipt += String.format("""

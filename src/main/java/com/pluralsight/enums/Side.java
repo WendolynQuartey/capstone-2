@@ -1,6 +1,15 @@
 package com.pluralsight.enums;
 
-public enum Side {
+public enum Side  implements Topping{
     AU_JUS,
-    SAUCE
+    SAUCE;
+
+
+    @Override
+    public String getName() {
+        if(this == AU_JUS){
+            return "au jus";
+        }
+        return name().toLowerCase();
+    }
 }

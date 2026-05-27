@@ -12,7 +12,7 @@ public class UserInterface {
 
     public static void display(){
         System.out.println("""
-                    Wendy's Deli-cuos Sandwicheria.
+                    Wendy's Deli-cious Sandwicheria.
                     Options:
                     1) Order Sandwich
                     2) Order Drink
@@ -22,11 +22,10 @@ public class UserInterface {
                     Select:\s
                     """);
 
-        int userSelection = scanner.nextInt();
-        scanner.nextLine();
+        String userSelection = scanner.nextLine();
 
         switch (userSelection){
-            case 1:
+            case "1":
                 processSandwich();
 
         }
@@ -36,9 +35,12 @@ public class UserInterface {
 
     }
     public static void processSandwich(){
+        System.out.println("Size Options: ");
         displaySize();
-        System.out.print("\nWhat size would you like your sandwich? ");
+        System.out.print("lnWhat size would you like your sandwich? ");
         String userSize = scanner.nextLine();
+
+
 
     }
 

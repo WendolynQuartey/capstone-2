@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import com.pluralsight.enums.BreadType;
+import com.pluralsight.enums.Protein;
 import com.pluralsight.enums.Size;
 
 import java.time.LocalDateTime;
@@ -8,13 +10,13 @@ public class Main {
     public static void main(String[] args) {
 
         UserInterface.display();
-        Meat meat = new Meat("steak", true, Size.SMALL,1.00);
+        Meat meat = new Meat(Protein.STEAK, true, Size.SMALL);
 
         System.out.println(meat.getPrice());
 
-        Sandwich sandwich = new Sandwich(Size.SMALL,"white", true);
+        Sandwich sandwich = new Sandwich(Size.SMALL, BreadType.WHITE, true);
 
-        sandwich.addIngredients(meat);
+        sandwich.addMeat(meat);
 
         System.out.println(sandwich.calculatePrice());
 
