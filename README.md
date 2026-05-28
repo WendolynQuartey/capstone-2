@@ -3,3 +3,4 @@ A food ordering command-line app that allows users to order sandwiches, chips, a
 
 ## Class Diagram Before:
 <img src="src/main/resources/images/deli-cious.before.png" alt="before class diagram" width="600" length="400">
+
