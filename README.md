@@ -10,7 +10,8 @@ The easiest way to run the code is to load it into IntelliJ IDEA and run the Mai
 
 
 ## Code I'm Most Proud of:
-I'm proud of this specific code block because it simplified access to my different regular toppings enums. It allowed me to create methods and a HashSet that took in all regular toppings Enums without having to type cast it. 
+I'm proud of this specific code block because it simplified access to my different regular toppings enums. 
+It allowed me to create methods and a HashSet that took in all regular toppings Enums without having to type cast it. 
 ```java
 public interface Topping {
     String getName();
