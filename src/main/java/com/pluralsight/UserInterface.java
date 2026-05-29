@@ -15,8 +15,15 @@ public class UserInterface {
 
     public static void display() {
         System.out.print("""
-                Wendy's Deli-cious Sandwicheria.
-                Options:
+                \nWelcome to Wendy's Deli-cious Sandwicheria!
+                Please enter your name:\t
+                """);
+        String customerName = scanner.nextLine();
+         order = new Order(customerName);
+
+
+        System.out.print("""
+                Menu Options:
                 1) Order Sandwich
                 2) Order Drink
                 3) Order Chips
@@ -32,6 +39,10 @@ public class UserInterface {
                 processSandwich();
 
         }
+    }
+
+    public static void setOrder(Order order) {
+        UserInterface.order = order;
     }
 
     public void processOrder(String name) {
@@ -90,8 +101,6 @@ public class UserInterface {
         }
 
         order.addSandwich(sandwich);
-
-
 
     }
 

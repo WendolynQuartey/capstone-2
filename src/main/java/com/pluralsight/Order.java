@@ -37,16 +37,22 @@ public class Order {
     public double getOrderTotal() {
         double total = 0;
 
-        for (Sandwich s : sandwiches){
-            total += s.calculatePrice();
+        if (sandwiches != null) {
+            for (Sandwich s : sandwiches) {
+                total += s.calculatePrice();
+            }
         }
 
-        for (Drink d : drinks){
-            total += d.getPrice();
+        if (drinks != null) {
+            for (Drink d : drinks) {
+                total += d.getPrice();
+            }
         }
 
-        for (Chip c : chips){
-            total += c.getPrice();
+        if (chips != null) {
+            for (Chip c : chips) {
+                total += c.getPrice();
+            }
         }
 
         return total;
