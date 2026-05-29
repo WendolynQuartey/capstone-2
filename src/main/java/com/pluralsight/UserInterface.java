@@ -67,12 +67,14 @@ public class UserInterface {
                 order.getOrderDetails(order);
                 System.out.println("Will that be all? (yes/no) ");
                 String confirmOrder = scanner.nextLine().toLowerCase();
-
                 if (confirmOrder.equals("yes")) {
-                    order.getReceiptDetails(order);
+                    System.out.println(order.getReceiptDetails(order));
                     ReceiptFileManager.saveReceipt(order, LocalDateTime.now());
-                } else {
+                    System.exit(0);
+                } else if (confirmOrder.equals("no")) {
                     isRunning = false;
+                } else {
+                    System.out.println("This is not an option! Try Again!");
                 }
             }
         }

@@ -1,0 +1,22 @@
+================================
+            RECEIPT
+=================================
+Date: [2026-05-29]
+
+Received From: [Wendy]
+
+Description:
+---------------------------------
+MEDIUM Sandwich $9.00
+	com.pluralsight.Cheese@72ea2f77
+	com.pluralsight.Meat@33c7353a
+	peppers
+	mayoSMALL Drink - $2.00
+---------------------------------
+Total:    $11.00
+
+Payment Method: [Cash/Card]
+Received By: [Deli-cuos]
+---------------------------------
+    Thank You for Your Business
+=================================
