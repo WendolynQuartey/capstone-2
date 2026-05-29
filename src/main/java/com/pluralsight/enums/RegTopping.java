@@ -5,7 +5,7 @@ public enum RegTopping implements Topping {
     PEPPERS,
     ONIONS,
     TOMATOES,
-    JALAPEÑOS,
+    JALAPENOS,
     CUCUMBERS,
     PICKLES,
     GUACAMOLE,

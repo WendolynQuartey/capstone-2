@@ -67,8 +67,12 @@ public class Sandwich {
         this.meat = meat;
     }
 
-    public void addToppings(RegTopping t){
+    public boolean addToppings(Topping t) {
+        if (toppings.contains(t)){
+            return false;
+        }
         toppings.add(t);
+        return true;
     }
 
     public String getSandwichDetails(Sandwich s){
@@ -105,5 +109,4 @@ public class Sandwich {
 
         return this.price;
     }
-
 }
