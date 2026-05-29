@@ -65,6 +65,14 @@ public class Sandwich {
         return meat;
     }
 
+    public void setCheese(Cheese cheese) {
+        this.cheese = cheese;
+    }
+
+    public void setMeat(Meat meat) {
+        this.meat = meat;
+    }
+
     public HashSet<Topping> getToppings() {
         return toppings;
     }
@@ -121,4 +129,5 @@ public class Sandwich {
 
         return this.price;
     }
+
 }

@@ -70,61 +70,208 @@ public class UserInterface {
         BreadType selectedBread = null;
         Sandwich sandwich = null;
 
-            // Get user size and checks if size matches any Size enum values
-            while (selectedSize == null) {
-                System.out.println("Size Options: ");
-                displaySize();
+        boolean isRunning = true;
 
-                System.out.print("\nWhat size would you like your sandwich? ");
-                String userSize = scanner.nextLine().toUpperCase();
+        while (isRunning) {
+            System.out.print("""
+                     \nTopping Options:
+                      1) Customize Your Sandwich
+                      2) Order BLT
+                      3) Order Philly cheesesteak
+                      0) Go Back
+                    \s
+                      Select:\t
+                     \s""");
 
-                for (Size size : Size.values()) {
-                    if (userSize.equals(size.name())) {
-                        selectedSize = size;
-                        break;
-                    }
-                }
+            String userSelection = scanner.nextLine();
 
-                if (selectedSize == null) {
-                    System.out.print("\nThat size is not available! Please try again .\n");
-                }
-
-            }
-
-            while (selectedBread == null) {
-                System.out.println("Bread Options: ");
-                displayBreadType();
-                System.out.print("\nWhat bread type would you like use for your sandwich? ");
-
-                String userBread = scanner.nextLine().toUpperCase();
-
-                for (BreadType bread : BreadType.values()) {
-                    if (userBread.equals(bread.name())) {
-                        selectedBread = bread;
-                    }
-                }
-
-                if (selectedBread == null) {
-                    System.out.print("\nThat bread is not available! Please try again. \n");
-                }
-            }
-
-            sandwich = new Sandwich(selectedSize, selectedBread, false);
-
-            boolean isRunning = true;
-            while (isRunning) {
-                System.out.print("\nWould you like your sandwich toasted? (yes/no): ");
-                String wantsToasted = scanner.nextLine().toLowerCase();
-                if (wantsToasted.equals("yes")) {
-                    sandwich.setToasted(true);
+            switch (userSelection) {
+                case "1":
+                    addCustomSandwich();
+                    break;
+                case "2":
+                    processBLT();
+                    break;
+                case "3":
+                    processPhillyCheese();
+                    break;
+                case "0":
                     isRunning = false;
-                } else if (wantsToasted.equals("no")) {
-                    isRunning = false;
-                }
-
-                System.out.println("This is not an option! Try Again");
-
+                    break;
+                default:
+                    System.out.println("Not an option. Try again");
             }
+
+        }
+    }
+
+    public static void processBLT() {
+        BLT bltSandwich = new BLT();
+        boolean isRunning = true;
+
+        while (isRunning) {
+            System.out.println("Current Toppings: ");
+            for (Topping t : bltSandwich.getToppings()) {
+                System.out.println(t.getName());
+            }
+            System.out.println(bltSandwich.getMeat());
+            System.out.println(bltSandwich.getCheese());
+            System.out.print("""
+                     \nBLT Options:
+                      1) Customize Your BLT
+                      2) Add BLT to Order
+                      0) Go Back
+                    \s
+                      Select:\t
+                     \s""");
+
+            String userSelection = scanner.nextLine();
+
+            switch (userSelection) {
+                case "1":
+                    customizeBLT(bltSandwich);
+                    break;
+                case "2":
+                    order.addSandwich(bltSandwich);
+                    isRunning = false;
+                    break;
+                case "0":
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("Not an option. Try again");
+            }
+
+        }
+    }
+
+    public static void processPhillyCheese() {
+    }
+
+    public static void customizePhillyCheese(PhillyCheese phillyCheese) {
+        boolean isRunning = true;
+
+        while (isRunning) {
+            System.out.print("""
+                     \nTopping Options:
+                      1) Change Regular Toppings
+                      2) Change Premium Toppings
+                      0) Go Back
+                    \s
+                      Select:\t
+                     \s""");
+
+            String userSelection = scanner.nextLine();
+
+            switch (userSelection) {
+                case "1":
+                    processToppings(phillyCheese);
+                    break;
+                case "2":
+                    //order.addSandwich(sandwich);
+                    isRunning = false;
+                    break;
+                case "0":
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("Not an option. Try again");
+            }
+
+        }
+    }
+
+
+    public  static void customizeBLT(BLT bltSandwich) {
+        boolean isRunning = true;
+
+        while(isRunning) {
+            System.out.print("""
+                   \nBLT Topping Options:
+                    1) Change Regular Toppings
+                    2) Change Premium Toppings
+                    0) Go Back
+                  \s
+                    Select:\t
+                   \s""");
+
+            String userSelection = scanner.nextLine();
+
+            switch (userSelection) {
+                case "1":
+                    processToppings(bltSandwich);
+                    break;
+                case "2":
+                    //order.addSandwich(sandwich);
+                    isRunning = false;
+                    break;
+                case "0":
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("Not an option. Try again");
+            }
+
+        }
+
+
+    }
+
+    public static void addCustomSandwich() {
+        Size selectedSize = null;
+        BreadType selectedBread = null;
+        Sandwich sandwich = null;
+
+        // Get user size and checks if size matches any Size enum values
+        while (selectedSize == null) {
+            System.out.println("Size Options: ");
+            displaySize();
+
+            System.out.print("\nWhat size would you like your sandwich? ");
+            String userSize = scanner.nextLine().toUpperCase();
+
+            for (Size size : Size.values()) {
+                if (userSize.equals(size.name())) {
+                    selectedSize = size;
+                    break;
+                }
+            }
+
+            if (selectedSize == null) {
+                System.out.print("\nThat size is not available! Please try again .\n");
+            }
+
+        }
+        // Get user's bread type and checks if their bread type matches any BreadType enum values
+        while (selectedBread == null) {
+            System.out.println("Bread Options: ");
+            displayBreadType();
+            System.out.print("\nWhat bread type would you like use for your sandwich? ");
+
+            String userBread = scanner.nextLine().toUpperCase();
+
+            for (BreadType bread : BreadType.values()) {
+                if (userBread.equals(bread.name())) {
+                    selectedBread = bread;
+                }
+            }
+
+            if (selectedBread == null) {
+                System.out.print("\nThat bread is not available! Please try again. \n");
+            }
+        }
+
+        sandwich = new Sandwich(selectedSize, selectedBread, false);
+
+        System.out.print("\nWould you like your sandwich toasted? (yes/no): ");
+        String wantsToasted = scanner.nextLine().toLowerCase();
+        if (wantsToasted.equals("yes")) {
+            sandwich.setToasted(true);
+            processToppings(sandwich);
+        } else if (wantsToasted.equals("no")) {
+            processToppings(sandwich);
+        }
+        System.out.println("This is not an option! Try Again");
 
         order.addSandwich(sandwich);
     }
@@ -149,7 +296,6 @@ public class UserInterface {
     }
 
     public static void processChips() {
-
         boolean isRunning = true;
         while (isRunning) {
             System.out.println("Would you like to add chips to your order? (yes/no) ");
@@ -166,7 +312,6 @@ public class UserInterface {
 
     public static void processToppings(Sandwich sandwich) {
         boolean isRunning = true;
-
         while (isRunning) {
             System.out.print("""
                    \nTopping Options:
@@ -261,6 +406,28 @@ public class UserInterface {
                     }
                 }
 
+            } else if (sandwich instanceof BLT || sandwich instanceof PhillyCheese){
+                displayMeats();
+                System.out.println("Which protein would you switch" + sandwich.getMeat() +"for on your sandwich? ");
+                String proteinChoice = scanner.nextLine().toLowerCase();
+                sandwich.setMeat(null);
+                for (Protein meat : Protein.values()) {
+                    if (proteinChoice.equals(meat.name().toLowerCase())) {
+                        System.out.print("\nWould you like extra of " + proteinChoice + " (yes/no) ");
+                        String wantsExtraProtein = scanner.nextLine().toLowerCase();
+                        if (wantsExtraProtein.equals("yes")) {
+                            Meat userProtein = new Meat(meat, true, sandwich.getSize());
+                            sandwich.addMeat(userProtein);
+                            isRunning = false;
+                        } else if (wantsExtraProtein.equals("no")) {
+                            Meat userProtein = new Meat(meat, false, sandwich.getSize());
+                            sandwich.addMeat(userProtein);
+                            isRunning = false;
+                        } else {
+                            System.out.println("This is not an option!");
+                        }
+                    }
+                }
             } else {
                 isRunning = false;
             }
@@ -445,3 +612,4 @@ public class UserInterface {
         }
 
     }
+
