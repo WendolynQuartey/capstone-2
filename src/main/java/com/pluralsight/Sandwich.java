@@ -106,11 +106,11 @@ public class Sandwich {
     public String getSandwichDetails(Sandwich s){
         String p1 = "";
         if (this.cheese != null) {
-            p1 += String.format("\n\t%s", cheese);
+            p1 += String.format("\n\t%s", cheese.cheese.name().toLowerCase());
         }
 
         if (this.meat != null) {
-            p1 += String.format("\n\t%s", meat);
+            p1 += String.format("\n\t%s", meat.meat.name().toLowerCase());
         }
 
         for (Topping t: s.toppings){
