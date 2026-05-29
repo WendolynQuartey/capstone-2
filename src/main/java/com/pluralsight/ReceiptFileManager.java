@@ -9,14 +9,14 @@ import java.time.format.DateTimeFormatter;
 
 public class ReceiptFileManager {
 
-    public static void saveReciept(Order o, LocalDateTime rightNow) {
+    public static void saveReceipt(Order o, LocalDateTime rightNow) {
         try {
             String now = rightNow.format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss"));
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/receipts/" + now + ".text"));
-            bufferedWriter.write(o.getOrderDetails(o));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/receipts/" + now + ".txt"));
+            bufferedWriter.write(o.getReceiptDetails(o));
             bufferedWriter.close();
         } catch(FileNotFoundException e){
-            System.err.println("❌File had not been found");
+            System.err.println("❌File has not been found");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

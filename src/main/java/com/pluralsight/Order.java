@@ -13,10 +13,23 @@ public class Order {
         this.customerName = customerName;
         this.sandwiches = new ArrayList<>();
         this.drinks = new ArrayList<>();
+        this.chips = new ArrayList<>();
     }
 
     public String getCustomerName() {
         return customerName;
+    }
+
+    public ArrayList<Sandwich> getSandwiches() {
+        return sandwiches;
+    }
+
+    public ArrayList<Drink> getDrinks() {
+        return drinks;
+    }
+
+    public ArrayList<Chip> getChips() {
+        return chips;
     }
 
     public void addSandwich(Sandwich s){
@@ -55,7 +68,7 @@ public class Order {
         return total;
     }
 
-    public String getOrderDetails(Order o){
+    public String getReceiptDetails(Order o){
         String receipt = String.format("""
                 ================================
                             RECEIPT
@@ -97,5 +110,29 @@ public class Order {
         """, o.getOrderTotal());
 
         return receipt;
+    }
+
+    public String getOrderDetails(Order o) {
+        String result = "";
+
+        if (this.sandwiches != null) {
+            for (Sandwich s : sandwiches) {
+                result += String.format("%s Sandwich $%.2f", s.getSize(), s.getPrice());
+                result += s.getSandwichDetails(s);
+            }
+        }
+
+        if(this.drinks != null) {
+            for (Drink d : drinks) {
+                result += String.format("%s Drink - $%.2f", d.getSize(), d.getPrice());
+            }
+        }
+
+        if (this.chips != null) {
+            for (Chip c : chips) {
+                result += String.format("Chip - $%.2f", c.getPrice());
+            }
+        }
+        return result;
     }
 }

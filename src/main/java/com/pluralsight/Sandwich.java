@@ -95,6 +95,14 @@ public class Sandwich {
         return true;
     }
 
+    public boolean removeTopping(Topping t){
+        if (toppings.contains(t)){
+            toppings.remove(t);
+            return true;
+        }
+        return false;
+    }
+
     public String getSandwichDetails(Sandwich s){
         String p1 = "";
         if (this.cheese != null) {
