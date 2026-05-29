@@ -13,45 +13,56 @@ public class UserInterface {
     }
 
     public static void display() {
-        System.out.print("""
-                \nWelcome to Wendy's Deli-cious Sandwicheria!
-                Please enter your name:\t
-                """);
-        String customerName = scanner.nextLine();
-        order = new Order(customerName);
+        boolean isRunning = true;
+        while(isRunning) {
+            String customerName = "";
+            while(customerName.isEmpty()) {
+                System.out.print("""
+                        \nWelcome to Wendy's Deli-cious Sandwicheria!
+                        Please enter your name:\t
+                        """);
+                customerName = scanner.nextLine().trim();
+                if (customerName.isEmpty()) {
+                    System.out.println("Name can't be empty. Try Again");
+                }
+            }
 
-        while (order != null) {
-            System.out.print("""
-                    Menu Options:
-                    1) Order Sandwich
-                    2) Order Drink
-                    3) Order Chips
-                    4) View Order & Checkout
-                    0) Exit
-                    
-                    Select:\t
-                    """);
+            order = new Order(customerName);
 
-            String userSelection = scanner.nextLine();
+            while (isRunning) {
+                System.out.print("""
+                        Menu Options:
+                        1) Order Sandwich
+                        2) Order Drink
+                        3) Order Chips
+                        4) View Order & Checkout
+                        0) Exit
+                        
+                        Select:\t
+                        """);
 
-            switch (userSelection) {
-                case "1":
-                    processSandwich();
-                    break;
-                case "2":
-                    processDrink();
-                    break;
-                case "3":
-                    processChips();
-                    break;
-                case "4":
-                    processOrder();
-                    break;
-                case "0":
-                   order = null;
-                   break;
-                default:
-                    System.out.println("Not an option. Try again");
+                String userSelection = scanner.nextLine();
+
+                switch (userSelection) {
+                    case "1":
+                        processSandwich();
+                        break;
+                    case "2":
+                        processDrink();
+                        break;
+                    case "3":
+                        processChips();
+                        break;
+                    case "4":
+                        processOrder();
+                        break;
+                    case "0":
+                        order = null;
+                        isRunning = false;
+                        break;
+                    default:
+                        System.out.println("Not an option. Try again");
+                }
             }
         }
     }
@@ -212,7 +223,6 @@ public class UserInterface {
             for (Size size : Size.values()) {
                 if (userSize.equals(size.name())) {
                     selectedSize = size;
-                    break;
                 }
             }
 
@@ -240,17 +250,24 @@ public class UserInterface {
             }
         }
 
+
         sandwich = new Sandwich(selectedSize, selectedBread, false);
 
-        System.out.print("\nWould you like your sandwich toasted? (yes/no): ");
-        String wantsToasted = scanner.nextLine().toLowerCase();
-        if (wantsToasted.equals("yes")) {
-            sandwich.setToasted(true);
-        } else if (!wantsToasted.equals("no")) {
-            System.out.println("This is not an option! Try Again");
+        boolean toastedAnswered = false;
+        while (!toastedAnswered) {
+            System.out.print("\nWould you like your sandwich toasted? (yes/no): ");
+            String wantsToasted = scanner.nextLine().toLowerCase();
+            if (wantsToasted.equals("yes")) {
+                sandwich.setToasted(true);
+                toastedAnswered = true;
+            } else if (wantsToasted.equals("no")) {
+                toastedAnswered = true;
+            } else {
+                System.out.println("This is not an option! Try Again");
+            }
         }
-        processToppings(sandwich);
 
+        processToppings(sandwich);
         order.addSandwich(sandwich);
     }
 
@@ -407,18 +424,23 @@ public class UserInterface {
 
                 for (Protein meat : Protein.values()) {
                     if (proteinChoice.equals(meat.name().toLowerCase())) {
-                        System.out.print("\nWould you like extra of " + proteinChoice + " (yes/no) ");
-                        String wantsExtraProtein = scanner.nextLine().toLowerCase();
-                        if (wantsExtraProtein.equals("yes")) {
-                            Meat userProtein = new Meat(meat, true, sandwich.getSize());
-                            sandwich.addMeat(userProtein);
-                            isRunning = false;
-                        } else if (wantsExtraProtein.equals("no")) {
-                            Meat userProtein = new Meat(meat, false, sandwich.getSize());
-                            sandwich.addMeat(userProtein);
-                            isRunning = false;
-                        } else {
-                            System.out.println("This is not an option!");
+                        boolean answeredExtra = false;
+                        while (!answeredExtra) {
+                            System.out.print("\nWould you like extra of " + proteinChoice + "? (yes/no) ");
+                            String wantsExtraProtein = scanner.nextLine().toLowerCase();
+                            if (wantsExtraProtein.equals("yes")) {
+                                Meat userProtein = new Meat(meat, true, sandwich.getSize());
+                                sandwich.addMeat(userProtein);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else if (wantsExtraProtein.equals("no")) {
+                                Meat userProtein = new Meat(meat, false, sandwich.getSize());
+                                sandwich.addMeat(userProtein);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else {
+                                System.out.println("This is not an option!");
+                            }
                         }
                     }
                 }
@@ -430,18 +452,23 @@ public class UserInterface {
                 sandwich.setMeat(null);
                 for (Protein meat : Protein.values()) {
                     if (proteinChoice.equals(meat.name().toLowerCase())) {
-                        System.out.print("\nWould you like extra of " + proteinChoice + " (yes/no) ");
-                        String wantsExtraProtein = scanner.nextLine().toLowerCase();
-                        if (wantsExtraProtein.equals("yes")) {
-                            Meat userProtein = new Meat(meat, true, sandwich.getSize());
-                            sandwich.addMeat(userProtein);
-                            isRunning = false;
-                        } else if (wantsExtraProtein.equals("no")) {
-                            Meat userProtein = new Meat(meat, false, sandwich.getSize());
-                            sandwich.addMeat(userProtein);
-                            isRunning = false;
-                        } else {
-                            System.out.println("This is not an option!");
+                        boolean answeredExtra = false;
+                        while (!answeredExtra) {
+                            System.out.print("\nWould you like extra of " + proteinChoice + " (yes/no) ");
+                            String wantsExtraProtein = scanner.nextLine().toLowerCase();
+                            if (wantsExtraProtein.equals("yes")) {
+                                Meat userProtein = new Meat(meat, true, sandwich.getSize());
+                                sandwich.addMeat(userProtein);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else if (wantsExtraProtein.equals("no")) {
+                                Meat userProtein = new Meat(meat, false, sandwich.getSize());
+                                sandwich.addMeat(userProtein);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else {
+                                System.out.println("This is not an option!");
+                            }
                         }
                     }
                 }
@@ -462,18 +489,23 @@ public class UserInterface {
 
                 for (Cheeses cheese : Cheeses.values()) {
                     if (cheeseChoice.equals(cheese.name().toLowerCase())) {
-                        System.out.print("\nWould you like extra of " + cheeseChoice + " (yes/no) ");
-                        String wantsExtraCheese = scanner.nextLine().toLowerCase();
-                        if (wantsExtraCheese.equals("yes")) {
-                            Cheese userCheese = new Cheese(cheese, true, sandwich.getSize());
-                            sandwich.addCheese(userCheese);
-                            isRunning = false;
-                        } else if (wantsExtraCheese.equals("no")) {
-                            Cheese userCheese = new Cheese(cheese, false, sandwich.getSize());
-                            sandwich.addCheese(userCheese);
-                            isRunning = false;
-                        } else {
-                            System.out.println("This is not an option!");
+                        boolean answeredExtra = false;
+                        while (!answeredExtra) {
+                            System.out.print("\nWould you like extra of " + cheeseChoice + " (yes/no) ");
+                            String wantsExtraCheese = scanner.nextLine().toLowerCase();
+                            if (wantsExtraCheese.equals("yes")) {
+                                Cheese userCheese = new Cheese(cheese, true, sandwich.getSize());
+                                sandwich.addCheese(userCheese);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else if (wantsExtraCheese.equals("no")) {
+                                Cheese userCheese = new Cheese(cheese, false, sandwich.getSize());
+                                sandwich.addCheese(userCheese);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else {
+                                System.out.println("This is not an option!");
+                            }
                         }
                     }
                 }
@@ -485,18 +517,23 @@ public class UserInterface {
                 sandwich.setCheese(null);
                 for (Cheeses cheese : Cheeses.values()) {
                     if (proteinChoice.equals(cheese.name().toLowerCase())) {
-                        System.out.print("\nWould you like extra of " + proteinChoice + " (yes/no) ");
-                        String wantsExtraProtein = scanner.nextLine().toLowerCase();
-                        if (wantsExtraProtein.equals("yes")) {
-                            Cheese userCheese = new Cheese(cheese, true, sandwich.getSize());
-                            sandwich.addCheese(userCheese);
-                            isRunning = false;
-                        } else if (wantsExtraProtein.equals("no")) {
-                            Cheese userCheese = new Cheese(cheese, false, sandwich.getSize());
-                            sandwich.addCheese(userCheese);
-                            isRunning = false;
-                        } else {
-                            System.out.println("This is not an option!");
+                        boolean answeredExtra = false;
+                        while (!answeredExtra) {
+                            System.out.print("\nWould you like extra of " + proteinChoice + " (yes/no) ");
+                            String wantsExtraProtein = scanner.nextLine().toLowerCase();
+                            if (wantsExtraProtein.equals("yes")) {
+                                Cheese userCheese = new Cheese(cheese, true, sandwich.getSize());
+                                sandwich.addCheese(userCheese);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else if (wantsExtraProtein.equals("no")) {
+                                Cheese userCheese = new Cheese(cheese, false, sandwich.getSize());
+                                sandwich.addCheese(userCheese);
+                                answeredExtra = true;
+                                isRunning = false;
+                            } else {
+                                System.out.println("This is not an option!");
+                            }
                         }
                     }
                 }
