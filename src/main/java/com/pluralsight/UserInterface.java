@@ -35,7 +35,7 @@ public class UserInterface {
                         1) Order Sandwich
                         2) Order Drink
                         3) Order Chips
-                        4) View Order & Checkout
+                        4) View Full Order & Checkout
                         0) Exit
                         
                         Select:\t
@@ -223,6 +223,7 @@ public class UserInterface {
             for (Size size : Size.values()) {
                 if (userSize.equals(size.name())) {
                     selectedSize = size;
+
                 }
             }
 
@@ -277,15 +278,20 @@ public class UserInterface {
             displaySize();
             System.out.println("What size would you like your drink? ");
             String drinkSize = scanner.nextLine().toLowerCase();
+            boolean isSize = false;
 
             for (Size size : Size.values()) {
                 if (drinkSize.equals(size.name().toLowerCase())) {
                     Drink drink = new Drink(size);
                     order.addDrink(drink);
                     System.out.println(size + " drink added!");
+                    isSize = true;
                     isRunning = false;
                 }
+            }
 
+            if (!isSize) {
+                System.out.println("This option is not available. Try Again!");
             }
         }
     }
@@ -293,17 +299,11 @@ public class UserInterface {
     public static void processChips() {
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("Would you like to add chips to your order? (yes/no) ");
-            String chipChoice = scanner.nextLine().toLowerCase();
-            if (chipChoice.equals("yes")) {
-                Chip chip = new Chip();
-                order.addChips(chip);
-                System.out.println("Chip added!");
-                isRunning = false;
-            } else {
-                isRunning = false;
+            Chip chip = new Chip();
+            order.addChips(chip);
+            System.out.println("Chip added!");
+            isRunning = false;
             }
-        }
     }
 
     public static void processToppings(Sandwich sandwich) {
