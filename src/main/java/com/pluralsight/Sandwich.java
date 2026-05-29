@@ -57,6 +57,18 @@ public class Sandwich {
         this.price = price;
     }
 
+    public Cheese getCheese() {
+        return cheese;
+    }
+
+    public Meat getMeat() {
+        return meat;
+    }
+
+    public HashSet<Topping> getToppings() {
+        return toppings;
+    }
+
     //endregion
 
     public void addCheese(Cheese cheese){
